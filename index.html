@@ -212,33 +212,33 @@
                 <h2 class="text-3xl font-bold mb-2">Solicita tu Presupuesto</h2>
                 <p class="text-gray-400">Cuéntanos sobre tu proyecto y te responderemos en menos de 2 horas.</p>
             </div>
-            
-            <form id="quoteForm" class="space-y-6">
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-400 mb-2">Nombre Completo</label>
-                        <input type="text" class="w-full bg-black border border-zinc-800 rounded-lg py-3 px-4 focus:outline-none focus:border-yellow-500 transition" placeholder="Tu nombre">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-400 mb-2">Modelo del Auto</label>
-                        <input type="text" class="w-full bg-black border border-zinc-800 rounded-lg py-3 px-4 focus:outline-none focus:border-yellow-500 transition" placeholder="Ej: Porsche 911">
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-400 mb-2">Servicio de Interés</label>
-                    <select class="w-full bg-black border border-zinc-800 rounded-lg py-3 px-4 focus:outline-none focus:border-yellow-500 transition">
-                        <option>Wrap Completo</option>
-                        <option>PPF (Protección)</option>
-                        <option>Chrome Delete</option>
-                        <option>Diseño Personalizado</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-400 mb-2">Mensaje / Detalles</label>
-                    <textarea rows="4" class="w-full bg-black border border-zinc-800 rounded-lg py-3 px-4 focus:outline-none focus:border-yellow-500 transition" placeholder="Cuéntanos más sobre el color o acabado que buscas..."></textarea>
-                </div>
-                <button type="submit" class="w-full btn-primary py-4 text-lg">Enviar Solicitud</button>
-            </form>
+           <form action="https://formspree.io/f/xaqdjrdg" method="POST" class="space-y-6">
+    <div class="grid md:grid-cols-2 gap-6">
+        <div>
+            <label class="block text-sm font-medium text-gray-400 mb-2">Nombre Completo</label>
+            <input type="text" name="nombre" class="w-full bg-black border border-zinc-800 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-yellow-500 transition" placeholder="Tu nombre" required>
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-400 mb-2">Modelo del Auto</label>
+            <input type="text" name="auto" class="w-full bg-black border border-zinc-800 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-yellow-500 transition" placeholder="Ej: Porsche 911" required>
+        </div>
+    </div>
+    <div>
+        <label class="block text-sm font-medium text-gray-400 mb-2">Servicio de Interés</label>
+        <select name="servicio" class="w-full bg-black border border-zinc-800 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-yellow-500 transition" required>
+            <option>Wrap Completo</option>
+            <option>PPF (Protección)</option>
+            <option>Chrome Delete</option>
+            <option>Diseño Personalizado</option>
+        </select>
+    </div>
+    <div>
+        <label class="block text-sm font-medium text-gray-400 mb-2">Mensaje / Detalles</label>
+        <textarea name="mensaje" rows="4" class="w-full bg-black border border-zinc-800 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-yellow-500 transition" placeholder="Cuéntanos más..."></textarea>
+    </div>
+    <button type="submit" class="w-full btn-primary py-4 text-lg font-bold">Enviar Solicitud</button>
+</form>
+
             <div id="successMsg" class="hidden mt-6 text-green-500 text-center font-bold">
                 ¡Gracias! Nos pondremos en contacto pronto.
             </div>
@@ -274,25 +274,24 @@
         </div>
     </footer>
 
-
     <script>
-        // Manejo sencillo de formulario
-        document.getElementById('quoteForm').onsubmit = function(e) {
-            e.preventDefault();
-            this.classList.add('hidden');
-            document.getElementById('successMsg').classList.remove('hidden');
-        };
-
         // Scroll suave para links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const targetId = this.getAttribute('href');
+                if (targetId !== "#") {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
             });
         });
     </script>
 </body>
 </html>
+
 
